@@ -1,0 +1,41 @@
+---
+title: "Data Frames"
+author: "Emalisa Antonioli"
+date: "2025-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dataframe Creation
+
+```{r}
+library(tibble) # Do not use dplyr, he does this in the presentation, but it is deprecated
+```
+
+```{r}
+wind_oem <- data_frame(name = c("Vestas", "SGRE", "GE"),
+                       market_share = c(15, 20, 10)
+                       )
+wind_oem
+```
+
+# Access Elements
+
+```{r}
+wind_oem$name
+wind_oem[, 1]
+wind_oem["name"]
+
+wind_oem[1, ]
+```
+
+# Delete Columns
+
+```{r}
+wind_oem$market_share <- NULL
+wind_oem
+```
+

@@ -1,0 +1,60 @@
+---
+title: "Operators"
+author: "Emalisa Antonioli"
+date: "2025-01-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Arithmetic Operators
+
+```{r}
+a <- c(20, 40, 60)
+b <- c(100, 3, 5)
+```
+
+```{r}
+a+b
+a-b
+a/b
+a*b
+```
+
+```{r}
+# Exponents
+b**a
+b^a
+```
+
+```{r}
+# Integer division
+a %% b
+a%/% b
+```
+
+# Logic Operators
+
+```{r}
+a < b
+a <= b
+a > b
+a >= b
+
+a == b
+a != b
+```
+
+# Special Operators
+
+```{r}
+a <- seq(0, 10, 2)
+b <- seq (0, 10, 3)
+
+b %in% a
+```
+
+
+

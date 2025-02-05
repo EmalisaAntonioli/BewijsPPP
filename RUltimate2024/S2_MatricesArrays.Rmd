@@ -1,0 +1,38 @@
+---
+title: "Matricas and Arrays"
+author: "Emalisa Antonioli"
+date: "2025-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Matrices
+
+```{r}
+# creating a vector from 1 to 23, length 24
+vec1 <- 1:24
+# Note that 6*4=24
+# byrow determines how the matrix is being populated
+mat1 <- matrix(data = vec1, nrow = 6,ncol = 4, byrow = F)
+mat1
+```
+
+# Array
+
+```{r}
+# this array exists of 2 matrices with 3 rows and 4 columns, this is defined in dim
+# the values come from the vector
+arr1 <- array(data = vec1, dim = c(3, 4, 2))
+arr1
+```
+
+```{r}
+arr2 <- arr1
+# Here we see an array witht he same values, but different dimensions
+dim(arr2) <- c(2, 2, 6)
+arr2
+```
+

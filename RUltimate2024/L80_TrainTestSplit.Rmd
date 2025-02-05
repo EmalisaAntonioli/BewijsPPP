@@ -1,0 +1,84 @@
+---
+title: "Train / Validation / Test Split"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Preparation
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(caret))
+library(keras)
+```
+
+
+```{r}
+df <- tibble(x = 1:1000) # tibble is similar to a df
+n_obs <- nrow(df) # n observations is n of rows in df
+```
+
+## Train / Validation / Test Split
+
+We create our own code for splitting data into training, validation, and testing.
+
+```{r}
+train_ratio <- 0.6
+validation_ratio <- 0.2
+test_ratio <- 1 - train_ratio - validation_ratio
+```
+
+
+```{r}
+set.seed(123) # ensure reproducibility
+
+sample_size_train <- floor(train_ratio * n_obs)
+sample_size_validation <- floor(validation_ratio * n_obs)
+sample_size_test <- floor(test_ratio * n_obs)
+
+indices_train <- base::sample(x = 1:n_obs, size = sample_size_train) %>% sort
+indices_not_train <- base::setdiff(x = 1:n_obs, indices_train) %>% sort
+indices_validation <- base::sample(x = indices_not_train, size = sample_size_validation)
+indices_test <- base::setdiff(indices_not_train, indices_validation)
+
+train <- df[indices_train, ]
+val <- df[indices_validation, ]
+test <- df[indices_test, ]
+```
+
+# Function for Train / Validation / Test Split
+
+```{r}
+train_val_test_split <- function(df, train_ratio = .6, val_ratio = .2, test_ratio = .2) {
+  n_obs <- nrow(df)
+  sample_size_train <- floor(train_ratio * n_obs)
+  sample_size_validation <- floor(validation_ratio * n_obs)
+  sample_size_test <- floor(test_ratio * n_obs)
+  
+  indices_train <- base::sample(x = 1:n_obs, size = sample_size_train) %>% sort
+  indices_not_train <- base::setdiff(x = 1:n_obs, indices_train) %>% sort
+  indices_validation <- base::sample(x = indices_not_train, size = sample_size_validation)
+  indices_test <- base::setdiff(indices_not_train, indices_validation)
+  
+  train <- df[indices_train, ]
+  val <- df[indices_validation, ]
+  test <- df[indices_test, ]
+  
+  list(train, val, test)
+}
+```
+
+We will use assignment operator from **keras** package.
+
+Now we have everything in place to perform the split.
+
+```{r}
+c(train, val, test) %<-% train_val_test_split(df)
+```
+
+# Modeling
+
+Now the modeling could start ...

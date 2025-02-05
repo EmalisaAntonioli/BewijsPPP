@@ -1,0 +1,42 @@
+---
+title: "List Handling"
+author: "Emalisa Antonioli"
+date: "2025-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("listviewer")
+```
+
+# Introduction
+
+```{r}
+char_vec <- c("a", "first", "test")
+num_vec <- c(1, 2.5, 4.7)
+bool_vec <- c(T, F)
+
+first_list <- list(char_vec, num_vec, bool_vec)
+first_list
+```
+
+```{r}
+typeof(first_list[[1]])
+typeof(first_list[1])
+first_list[[1]][2]
+```
+
+```{r}
+first_list <- list(chars = char_vec, nums = num_vec, bools = bool_vec)
+first_list
+first_list$chars
+```
+
+```{r}
+jsonedit(first_list)
+```
+

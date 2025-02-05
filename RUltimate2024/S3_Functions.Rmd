@@ -1,0 +1,107 @@
+---
+title: "Functions"
+author: "Emalisa Antonioli"
+date: "2025-01-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+fibonacci <- c(1, 1) # initialize the sequence
+# check the structure
+str(fibonacci)
+```
+
+```{r}
+length(fibonacci) # check the length of a vector
+```
+
+```{r}
+fibonacci[length(fibonacci)] # last element of the sequence
+fibonacci[length(fibonacci) - 1] # second to last element of the sequence
+```
+
+```{r}
+# calculate the next element of the sequence
+next_element <- fibonacci[length(fibonacci) - 1] + fibonacci[length(fibonacci)]
+```
+
+# Fibonacci Function
+
+```{r}
+FibonacciCalc <- function(element_nr) {
+  # this will return the fibonacci sequence up to "element_nr"
+  
+  #init the sequence
+  fibonacci <- c(1, 1)
+  for (i in 3:element_nr) {
+    next_element <- fibonacci[length(fibonacci) - 1] + fibonacci[length(fibonacci)]
+    fibonacci <- append(fibonacci, next_element)
+  }
+  # R automatically uses the last variable as return value
+  fibonacci
+}
+```
+
+```{r}
+FibonacciCalc(7)
+```
+
+# Fibonacci Function: Bugfix 1 (cover element_nr 1 and 2)
+
+```{r}
+FibonacciCalcV2 <- function(element_nr) {
+  # this will return the fibonacci sequence up to "element_nr"
+  
+  #init the sequence
+  fibonacci <- c(1, 1)
+  
+  if (element_nr < 3) {
+    fibonacci <- fibonacci[1:element_nr]
+  } else if (element_nr >= 3) {
+      for (i in 3:element_nr) {
+        next_element <- fibonacci[length(fibonacci) - 1] + fibonacci[length(fibonacci)]
+        fibonacci <- append(fibonacci, next_element)
+    }
+  }
+
+  # R automatically uses the last variable as return value
+  fibonacci
+}
+```
+
+```{r}
+FibonacciCalcV2((2))
+```
+
+# Fibonacci Function: Bugfix 2 (cover element_nr 0 or below)
+
+```{r}
+FibonacciCalcV3 <- function(element_nr) {
+  # this will return the fibonacci sequence up to "element_nr"
+  
+  #init the sequence
+  fibonacci <- c(1, 1)
+  
+  if(element_nr < 1) {
+    fibonacci <- 0
+  } else if (element_nr < 3) {
+    fibonacci <- fibonacci[1:element_nr]
+  } else if (element_nr >= 3) {
+      for (i in 3:element_nr) {
+        next_element <- fibonacci[length(fibonacci) - 1] + fibonacci[length(fibonacci)]
+        fibonacci <- append(fibonacci, next_element)
+    }
+  }
+
+  # R automatically uses the last variable as return value
+  fibonacci
+}
+```
+
+```{r}
+FibonacciCalcV3(0)
+```

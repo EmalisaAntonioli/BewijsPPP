@@ -1,0 +1,48 @@
+---
+title: "Loops"
+author: "Emalisa Antonioli"
+date: "2025-01-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# For Loops
+
+```{r}
+sequence <- 1:10
+for (o in sequence) {
+  for (i in sequence) {
+    print(paste(o, ", ", i))
+  }
+}
+```
+
+# While Loop
+
+```{r}
+final_letter <- "Z"
+l <- "A"
+while (l != final_letter) {
+  print(l)
+  letter_pos <- which(l == LETTERS)
+  l <- LETTERS[letter_pos + 1]
+}
+```
+
+# Repeat Loop
+```{r}
+final_letter <- "Z"
+l <- "A"
+repeat {
+  letter_pos <- which(l == LETTERS)
+  l <- LETTERS[letter_pos + 1]
+  print(l)
+  if (l == final_letter) {
+    break
+  }
+}
+```
+

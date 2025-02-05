@@ -1,0 +1,61 @@
+---
+title: "Basic Data Types+"
+author: "Emalisa Antonioli"
+date: "2025-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# vector creation
+
+Double/numeric variables
+c combines values into a vector or list. Place your cursor on a function and press F1 to get a description.
+
+```{r}
+double_var <- c(2, 3.4, 0, 7.8)
+```
+
+Integer variables
+
+```{r}
+integer_var <- c(2L, 4L, 15L)
+```
+
+Boolean variables
+
+```{r}
+logical_var <- c(TRUE, FALSE, F, T)
+```
+
+character variable
+
+```{r}
+char_var <- c("4", "test", "5")
+```
+
+# Types
+
+```{r}
+typeof(double_var)
+```
+
+```{r}
+is.double(double_var)
+is.double(integer_var)
+```
+
+# Type Coercion
+
+```{r}
+typeof(c(1L, 2L, 3))
+```
+
+```{r}
+as.logical(as.integer(double_var))
+as.numeric(char_var)
+
+```
+

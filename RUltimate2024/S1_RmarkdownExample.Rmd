@@ -1,0 +1,35 @@
+---
+title: "Rmarkdown Introduction"
+author: "Emalisa Antonioli"
+date: "2025-01-09"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Word Processing
+
+You can format text in **bold** or *italic*.
+
+# Code Chunk 
+
+Youw want to calculate exp(1).
+
+```{r}
+exp(1)
+```
+
+# Plots
+
+```{r}
+library(plotly)
+data("volcano")
+plot_ly(z = volcano, type = "surface")
+```
+

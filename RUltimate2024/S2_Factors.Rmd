@@ -1,0 +1,55 @@
+---
+title: "Factors"
+author: "Emalisa Antonioli"
+date: "2025-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A factor is like a vector, but only a fixed list of values, called levels, are allowed
+This is great for limiting user input
+
+# Creation
+```{r}
+# If levels aren't explicitly specified, the values are taken as the levels
+x <- factor(c("a", "b", "c", "d", "e"), levels = c("a", "b", "c", "d", "e", "f"))
+x
+```
+
+```{r}
+x[1] <- "f"
+x
+```
+
+```{r}
+factor1 <- factor("first")
+factor2 <- factor("second")
+c(factor1, factor2)
+```
+
+```{r}
+worktype_char <- c("employed", "unemployed", "employed")
+worktype_factor <- factor(x= worktype_char, levels = c("employed", "unemployed", "retired"))
+worktype_factor
+
+table(worktype_factor)
+
+```
+
+# Data Import Problem
+
+When there is non-numeric values in an imported column, the column type will be set to a factor
+
+```{r}
+txt_data <- read.table("./data/factorImport.txt", header = T)
+txt_data
+
+as.numeric(txt_data$value) # NOT WORKING, except it is? maybe R has changed in the past 5 years
+levels(txt_data$value)
+
+as.numeric(as.character(txt_data$value)) # I don't think this first passing to a char is needed anymore
+```
+
